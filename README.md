@@ -1,4 +1,4 @@
-# BashBlaze: 7 Days of Bash Scripting Challenge
+# BashBlaze: 7 Days of Bash Scripting Challenge for kuldeep pilaji
 
 > Learn X in Y days
 > Where X=bash
