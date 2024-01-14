@@ -39,3 +39,15 @@ function perform_rotation {
 # Main script logic
 create_backup
 perform_rotation
+
+
+
+
+
+
+
+
+
+
+
+
