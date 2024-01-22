@@ -8,9 +8,7 @@ function display_usage {
 # Check if a valid directory path is provided as a command-line argument
 if [ $# -eq 0 ] || [ ! -d "$1" ]; then
     echo "Error: Please provide a valid directory path as a command-line argument."
-    display_usage
-    exit 1
-fi
+    displ
 
 # Directory path of the source directory to be backed up
 source_dir="$1"
