@@ -28,7 +28,7 @@ function perform_rotation {
     local backups=($(ls -t "${source_dir}/backup_"* 2>/dev/null))  # List existing backups sorted by timestamp
 
     # Check if there are more than 3 backups
-    if [ "${#backups[@]}" -gt 3 ]; then
+    if [ "${backups[@]}" -gt 3 ]; then
         local backups_to_remove="${backups[@]:3}"  # Get backups beyond the last 3
         rm -rf "${backups_to_remove[@]}"  # Remove the oldest backups
     fi

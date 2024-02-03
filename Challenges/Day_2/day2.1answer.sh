@@ -4,6 +4,8 @@
 
 function display_usage {
     echo "Running script : $0  "
+    cd $1
+    ls -l
 }
 
 #check if valid directory path is provided as CLI args
@@ -15,25 +17,30 @@ if [ $# -eq 0 ] || [ ! -d "$1" ]; then
     display_usage
     exit 1
 fi
-source_directory="$1"
+source_dir="$1"
 #funcation to create timestnamp backup folder
 function create_backup {
-    local timestamp =$(date '+%Y-%m-%d_%H-%M-%S')
-    local backup_dir="${source_directory}/KP_backup_${timestanmp}"
-    mkdir "backup_dir"
+    local timestamp=$(date '+%Y-%m-%d_%H-%M-%S') 
+   
+    local backup_dir="${source_dir}/backup_${timestamp}"
+   
+    mkdir  $backup_dir  
+    #echo $backup_dir
     echo "Backup Created Successfully: $backup_dir"
     ##copy taks can be added here for now we just create backup folder
 }
 
 function perform_rotation {
-    local backupCount=($(ls -t "${source_dir}/KP_backup_"* 2>/dev/null))
+    local backups=($(ls -t "${source_dir}/backup_"* 2>/dev/null))
 
-    #chcek for more than 3 backup
-    
+    if [ "${#backups[@]}" -gt 3 ]; then
+        local backups_to_remove="${backups[@]:3}"  # Get backups beyond the last 3
+        rm -rf "${backups_to_remove[@]}"  # Remove the oldest backups
+        echo "Deleted bkps more that three"
+    fi
 
 }
 
-
+tput clear
 create_backup
 perform_rotation
-cal
